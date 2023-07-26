@@ -76,6 +76,7 @@ def train():
     grad_loss_fn = losses.gradient_loss
 
     # Get all the names of the training data
+    ##加
     train_files = glob.glob(os.path.join(args.train_dir, '*.nii.gz'))
     DS = Dataset(files=train_files)
     print("Number of training images: ", len(DS))
@@ -84,7 +85,7 @@ def train():
     # Training loop.
     for i in range(1, args.n_iter + 1):
         # Generate the moving images and convert them to tensors.
-        input_moving = iter(DL).next()
+        input_moving = next(iter(DL))
         # [B, C, D, W, H]
         input_moving = input_moving.to(device).float()
 
